@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:title="Specific Movie"
+            app:title="Movie Detail"
             android:id="@+id/collapsingToolBar">
 
 
@@ -92,7 +92,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12-09-2022"
+                    android:text="Date"
                     android:textSize="16sp"
                     android:letterSpacing="0.03"
                     android:id="@+id/releaseDateTextView"
@@ -103,8 +103,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="The Amazing Spider Man"
-                    android:textColor="@color/black"
+                    android:text="Movie name"
+                    android:textColor="@color/purple_200"
                     android:letterSpacing="0.08"
                     android:maxLines="1"
                     android:textSize="16sp"
@@ -150,7 +150,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Synopsis"
+                        android:text="Overview"
                         android:textColor="@color/black"
                         android:letterSpacing="0.07"
                         android:textSize="20sp"/>
