@@ -1,10 +1,14 @@
 package com.zopsmart.mymovies.model
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.zopsmart.mymovies.MovieDetailActivity
 import com.zopsmart.mymovies.databinding.ItemBinding
 
 class MovieAdapter(private val context  : Context, private val popularMovieList : List<Movie>): RecyclerView.Adapter<MovieAdapter.MovieVH>() {
@@ -27,6 +31,16 @@ class MovieAdapter(private val context  : Context, private val popularMovieList 
             .load("https://www.themoviedb.org/t/p/w500${popularMovie.posterPath}")
             .fitCenter()
             .into(holder.binding.cvIvMoviePoster)
+
+        holder.itemView.setOnClickListener(){
+            val intent : Intent = Intent(context, MovieDetailActivity::class.java)
+
+
+            intent.putExtra("movieid",popularMovie.id)
+
+           // intent.putExtra("poster",popularMovie.posterPath)
+            startActivity(context,intent,null)
+        }
     }
 
     override fun getItemCount(): Int {
