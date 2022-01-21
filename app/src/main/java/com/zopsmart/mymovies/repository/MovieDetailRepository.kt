@@ -9,20 +9,22 @@ import com.zopsmart.mymovies.model.MovieDetailModel
 
 class MovieDetailRepository (private val apiInterface: apiInterface){
 
-    private  val  mutableMovieDetailLiveData = MutableLiveData<MovieDetailModel>()
 
-    val MovieDetailLiveData : LiveData<MovieDetailModel>
-        get() = mutableMovieDetailLiveData
+    private val mutableSpecificMovieLiveData =  MutableLiveData<MovieDetailModel>()
+
+    val specificMovieLiveData : LiveData<MovieDetailModel>
+        get() = mutableSpecificMovieLiveData
 
 
-    suspend fun getMovieDetail(MovieId: Int)
+    suspend fun getSpecificMovieDetails(movieId : Int)
     {
-
-        val result = apiInterface.getMovieDetails(MovieId,RetrofitHelper.API_KEY)
-        if(result.body() != null)
+        val result = apiInterface.getMovieDetails(movieId)
+        Log.d("kkk","result of repo : "+result.toString()+"result of body :"+result.body())
+        if(result?.body() != null)
         {
-            Log.d("kkk","Response of Popular Movie : "+result.body().toString())
-            mutableMovieDetailLiveData.postValue(result.body())
+            Log.d("kkk","specific movie response : "+result.body())
+            mutableSpecificMovieLiveData.postValue(result.body())
         }
     }
+
 }

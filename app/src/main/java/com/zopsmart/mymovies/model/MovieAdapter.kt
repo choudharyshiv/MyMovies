@@ -2,7 +2,6 @@ package com.zopsmart.mymovies.model
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
@@ -36,7 +35,7 @@ class MovieAdapter(private val context  : Context, private val popularMovieList 
             val intent : Intent = Intent(context, MovieDetailActivity::class.java)
 
 
-            intent.putExtra("movieid",popularMovie.id)
+            intent.putExtra("movieId",popularMovie.id)
 
            // intent.putExtra("poster",popularMovie.posterPath)
             startActivity(context,intent,null)

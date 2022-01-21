@@ -11,8 +11,9 @@ interface apiInterface {
     @GET("movie/popular")
     suspend fun getPopularMovies(@Query("api_key") apikey : String) : Response<PopularMovieModel>
 
-    @GET("/movie/{movieId}/{api_key}")
-    suspend fun getMovieDetails(@Path("movieId") movieId : Int,@Path("api_key") apikey : String) : Response<MovieDetailModel>
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetails(@Path("movie_id") movieId : Int) : Response<MovieDetailModel>
+
 
 }
 

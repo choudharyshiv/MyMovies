@@ -1,5 +1,6 @@
 package com.zopsmart.mymovies.ViewModels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,13 +15,14 @@ fun getMovieDetail(movieId:Int)
 {
     viewModelScope.launch(Dispatchers.IO)
     {
-        repository.getMovieDetail(movieId)
+        Log.d("kkk","movie detail view model called")
+        repository.getSpecificMovieDetails(movieId)
 
     }
 }
 
-        val MoviesDetailLiveData : LiveData<MovieDetailModel>
-            get() = repository.MovieDetailLiveData
+        val movieDetailLiveData : LiveData<MovieDetailModel>
+            get() = repository.specificMovieLiveData
 
 
 
