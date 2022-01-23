@@ -6,9 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.zopsmart.mymovies.model.PopularMovieModel
 import kotlinx.coroutines.launch
 import com.zopsmart.mymovies.repository.PopularMovieRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
-class PopularMovieViewModel (private val repository: PopularMovieRepository) : ViewModel() {
+@HiltViewModel
+class PopularMovieViewModel @Inject constructor(private val repository: PopularMovieRepository) :
+    ViewModel() {
 
 
     init {

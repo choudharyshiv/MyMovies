@@ -5,8 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.zopsmart.mymovies.api.ApiInterface
 import com.zopsmart.mymovies.model.PopularMovieModel
+import javax.inject.Inject
 
-class PopularMovieRepository(private val ApiInterface: ApiInterface) {
+class PopularMovieRepository @Inject constructor(private val ApiInterface: ApiInterface) {
 
 
     private val mutablePopularMovieLiveData = MutableLiveData<PopularMovieModel>()

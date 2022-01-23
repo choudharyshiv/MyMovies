@@ -13,7 +13,10 @@ import com.zopsmart.mymovies.model.MovieAdapter
 import com.zopsmart.mymovies.repository.PopularMovieRepository
 import com.zopsmart.mymovies.viewModels.PopularMovieViewFactory
 import com.zopsmart.mymovies.viewModels.PopularMovieViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 
@@ -29,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             GridLayoutManager.VERTICAL, false
         )
         recylcerView.layoutManager = gridLayoutManager
-
 
         val movieService = RetrofitHelper.getInstance().create(ApiInterface::class.java)
         val repository = PopularMovieRepository(movieService)
