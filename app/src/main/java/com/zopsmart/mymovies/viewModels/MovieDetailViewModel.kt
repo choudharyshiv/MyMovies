@@ -1,4 +1,4 @@
-package com.zopsmart.mymovies.ViewModels
+package com.zopsmart.mymovies.viewModels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -9,7 +9,7 @@ import com.zopsmart.mymovies.repository.MovieDetailRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel  (val repository: MovieDetailRepository) : ViewModel(){
+class MovieDetailViewModel  (private val repository: MovieDetailRepository) : ViewModel(){
 
 fun getMovieDetail(movieId:Int)
 {

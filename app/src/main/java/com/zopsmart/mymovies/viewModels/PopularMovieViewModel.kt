@@ -1,4 +1,4 @@
-package com.zopsmart.mymovies.ViewModels
+package com.zopsmart.mymovies.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import com.zopsmart.mymovies.repository.PopularMovieRepository
 import kotlinx.coroutines.Dispatchers
 
-class PopularMovieViewModel (val repository: PopularMovieRepository) : ViewModel() {
+class PopularMovieViewModel (private val repository: PopularMovieRepository) : ViewModel() {
 
 
     init {

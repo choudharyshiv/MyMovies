@@ -7,9 +7,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface apiInterface {
+interface ApiInterface {
     @GET("movie/popular")
-    suspend fun getPopularMovies(@Query("api_key") apikey : String) : Response<PopularMovieModel>
+    suspend fun getPopularMovies() : Response<PopularMovieModel>
 
     @GET("movie/{movie_id}")
     suspend fun getMovieDetails(@Path("movie_id") movieId : Int) : Response<MovieDetailModel>

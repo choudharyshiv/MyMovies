@@ -9,53 +9,44 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.zopsmart.mymovies.ViewModels.MovieDetailViewFactory
-import com.zopsmart.mymovies.ViewModels.MovieDetailViewModel
+import com.zopsmart.mymovies.viewModels.MovieDetailViewFactory
+import com.zopsmart.mymovies.viewModels.MovieDetailViewModel
 import com.zopsmart.mymovies.api.RetrofitHelper
-import com.zopsmart.mymovies.api.apiInterface
+import com.zopsmart.mymovies.api.ApiInterface
 import com.zopsmart.mymovies.repository.MovieDetailRepository
 
 class MovieDetailActivity : AppCompatActivity() {
 
-    lateinit var movieDetailViewModel: MovieDetailViewModel
-    lateinit var movieTitleTextView : TextView
-    lateinit var likeFab : FloatingActionButton
-    lateinit var moviePosterImageView : ImageView
-    lateinit var collapsingToolbar: CollapsingToolbarLayout
-    lateinit var releaseDateTextView : TextView
-    lateinit var ratingBar: RatingBar
-    lateinit var overviewTextView: TextView
 
-    var movieId : Int  = 0
+    private var movieId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail2)
-        val movieService = RetrofitHelper.getInstance().create(apiInterface::class.java)
-        val repository= MovieDetailRepository(movieService)
+        val movieService = RetrofitHelper.getInstance().create(ApiInterface::class.java)
+        val repository = MovieDetailRepository(movieService)
+
+//use binding
+        val moviePosterImageView: ImageView = findViewById(R.id.moviePosterImageView)
+        val collapsingToolbar: CollapsingToolbarLayout = findViewById(R.id.collapsingToolBar)
+        val releaseDateTextView: TextView = findViewById(R.id.releaseDateTextView)
+        val movieTitleTextView: TextView = findViewById(R.id.movieTitleTextView)
+        val ratingBar: RatingBar = findViewById(R.id.ratingBar)
+        val overviewTextView: TextView = findViewById(R.id.synopsisTextView)
+        //val likeFab: FloatingActionButton = findViewById(R.id.likeFab)
 
 
-        moviePosterImageView = findViewById(R.id.moviePosterImageView)
-        collapsingToolbar = findViewById(R.id.collapsingToolBar)
-        releaseDateTextView = findViewById(R.id.releaseDateTextView)
-        movieTitleTextView = findViewById(R.id.movieTitleTextView)
-        ratingBar = findViewById(R.id.ratingBar)
-        overviewTextView = findViewById(R.id.synopsisTextView)
-        likeFab = findViewById(R.id.likeFab)
-
-
-
-        if(intent != null)
-        {
-            movieId = intent.getIntExtra("movieId",0)
-            Log.d("kkk","receive movie id : "+movieId)
+        intent?.let {
+            movieId = it.getIntExtra("movieId", 0)
+            Log.d("kkk", "receive movie id : $movieId")
         }
-
-        movieDetailViewModel = ViewModelProvider(this , MovieDetailViewFactory(repository)).get(MovieDetailViewModel :: class.java)
+        val movieDetailViewModel: MovieDetailViewModel = ViewModelProvider(
+            this,
+            MovieDetailViewFactory(repository)
+        )[MovieDetailViewModel::class.java]
         movieDetailViewModel.getMovieDetail(movieId)
 
-        movieDetailViewModel.movieDetailLiveData.observe(this,{
+        movieDetailViewModel.movieDetailLiveData.observe(this, {
             Log.d("kkk", "movie detail response : $it")
             collapsingToolbar.title = it.title
             movieTitleTextView.text = it.title
@@ -66,7 +57,7 @@ class MovieDetailActivity : AppCompatActivity() {
             Glide
                 .with(this)
                 .load("https://www.themoviedb.org/t/p/w500${it.posterPath}")
-                .fitCenter()
+                .centerCrop()
                 .into(moviePosterImageView)
         })
 

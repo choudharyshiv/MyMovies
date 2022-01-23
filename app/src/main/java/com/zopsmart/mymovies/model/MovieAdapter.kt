@@ -10,11 +10,9 @@ import com.bumptech.glide.Glide
 import com.zopsmart.mymovies.MovieDetailActivity
 import com.zopsmart.mymovies.databinding.ItemBinding
 
-class MovieAdapter(private val context  : Context, private val popularMovieList : List<Movie>): RecyclerView.Adapter<MovieAdapter.MovieVH>() {
-
-
-
-    class MovieVH(val binding: ItemBinding): RecyclerView.ViewHolder(binding.root)
+class MovieAdapter(private val context: Context, private val popularMovieList: List<Movie>) :
+    RecyclerView.Adapter<MovieAdapter.MovieVH>() {
+    class MovieVH(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieVH {
         val inflater = LayoutInflater.from(parent.context)
@@ -30,21 +28,15 @@ class MovieAdapter(private val context  : Context, private val popularMovieList 
             .load("https://www.themoviedb.org/t/p/w500${popularMovie.posterPath}")
             .fitCenter()
             .into(holder.binding.cvIvMoviePoster)
-
-        holder.itemView.setOnClickListener(){
-            val intent : Intent = Intent(context, MovieDetailActivity::class.java)
-
-
-            intent.putExtra("movieId",popularMovie.id)
-
-           // intent.putExtra("poster",popularMovie.posterPath)
-            startActivity(context,intent,null)
+//put it inside init block
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, MovieDetailActivity::class.java)
+            intent.putExtra("movieId", popularMovie.id)
+            startActivity(context, intent, null)
         }
     }
 
-    override fun getItemCount(): Int {
-        return popularMovieList.size
-    }
+    override fun getItemCount() = popularMovieList.size
 
 
 }

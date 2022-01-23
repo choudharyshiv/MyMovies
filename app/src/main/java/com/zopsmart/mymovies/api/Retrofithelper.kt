@@ -1,7 +1,5 @@
 package com.zopsmart.mymovies.api
 
-
-import okhttp3.Credentials
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -14,9 +12,9 @@ import java.util.concurrent.TimeUnit
 object RetrofitHelper {
     private const val BASE_URL = "https://api.themoviedb.org/3/"
 
-     const val API_KEY = "65db5aebb7dc29d77c7b00443904e829"
+    private const val  API_KEY = "65db5aebb7dc29d77c7b00443904e829"
 
-    val requestInterceptor  = Interceptor {  chain ->
+    private val requestInterceptor  = Interceptor { chain ->
 
         val url : HttpUrl =  chain.request()
             .url()
@@ -34,7 +32,7 @@ object RetrofitHelper {
 
     }
 
-    val okHttpClient = OkHttpClient.Builder()
+    private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(requestInterceptor)
         .connectTimeout(60, TimeUnit.SECONDS)
         .build()
