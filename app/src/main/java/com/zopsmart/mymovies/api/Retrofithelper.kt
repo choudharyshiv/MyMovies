@@ -16,9 +16,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RetrofitHelper {
-    private  val BASE_URL = "https://api.themoviedb.org/3/"
+    private const val BASE_URL = "https://api.themoviedb.org/3/"
 
-    private val  API_KEY = "65db5aebb7dc29d77c7b00443904e829"
+    private const val  API_KEY = "65db5aebb7dc29d77c7b00443904e829"
 
     private val requestInterceptor  = Interceptor { chain ->
 
