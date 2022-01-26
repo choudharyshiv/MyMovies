@@ -59,6 +59,11 @@ class MovieDetailActivity : AppCompatActivity() {
         movieDatabase.movieLikeDao().getMovieRow(movieId).observe(this, {
             if(it!=null)
                 isLike = it.isLike
+            if(isLike)
+            {
+                likeButton.backgroundTintList = applicationContext.resources.
+                getColorStateList(R.color.actionBarGreenColor)
+            }
         })
        //OnLikeShow(movieId)
 
